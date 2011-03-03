@@ -1,0 +1,10 @@
+Bluepill.application("hummingbird") do |app|
+  app.process("hummingbird") do |process|
+    process.start_command = "<%= node[:nodejs][:dir] %>/bin/node server.js"
+    process.pid_file = "<%= node[:bluepill][:pid_dir] %>/hummingbird.pid"
+    process.stdout = "<%= node[:bluepill][:log_dir] %>/hummingbird.out.log"
+    process.stderr = "<%= node[:bluepill][:log_dir] %>/hummingbird.err.log"
+    process.working_dir = "<%= @install_path %>"
+    process.daemonize = true
+  end
+end
